@@ -15,3 +15,6 @@ ingress:
       paths:
         - path: /
           pathType: Prefix
+
+serviceAccount:
+  create: false
