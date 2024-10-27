@@ -1,6 +1,6 @@
 image:
   repository: thedevopsdude/python-app
-  tag: 79c778e
+  tag: 71e902f
   pullPolicy: IfNotPresent
 
 service:
