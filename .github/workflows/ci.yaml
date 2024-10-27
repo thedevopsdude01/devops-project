@@ -29,3 +29,10 @@ jobs:
       - name: Push Docker image
         run: |
           docker push thedevopsdude/python-app:${{ env.SHORT_SHA }}
+
+      - name: Update Helm chart with new image tag
+        run: |
+          sed -i "s/tag:.*/tag: ${{ env.SHORT_SHA }}/" ./python-app/values.yaml
+          git add ./python-app/values.yaml
+          git commit -m "Updated image tag to ${{ env.SHORT_SHA }}"
+          git push
