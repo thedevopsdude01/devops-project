@@ -20,7 +20,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t thedevopsdude01/python-app:${{ env.SHORT_SHA }} .
+          docker build -t thedevopsdude/python-app:${{ env.SHORT_SHA }} .
 
       - name: Log in to DockerHub
         run: |
@@ -28,4 +28,4 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker push thedevopsdude01/python-app:${{ env.SHORT_SHA }}
+          docker push thedevopsdude/python-app:${{ env.SHORT_SHA }}
