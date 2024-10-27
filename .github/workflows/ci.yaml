@@ -1,24 +1,34 @@
+---
 name: CI Pipeline
 
 on:
   push:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set Short SHA
-      run: echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_ENV      
-    - name: Lint YAML files
-      uses: ibiqlik/action-yamllint@v3
-    - name: Build Docker image
-      run: docker build -t your-dockerhub-username/python-app:${{ env.SHORT_SHA }} .
-    - name: Log in to DockerHub
-      run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-    - name: Push Docker image
-      run: docker push your-dockerhub-username/python-app:${{ env.SHORT_SHA }}
+      - name: Set Short SHA
+        run: |
+          echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_ENV
+
+      - name: Lint YAML files
+        uses: ibiqlik/action-yamllint@v3
+
+      - name: Build Docker image
+        run: |
+          docker build -t thedevopsdude01/python-app:${{ env.SHORT_SHA }} .
+
+      - name: Log in to DockerHub
+        run: |
+          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      - name: Push Docker image
+        run: |
+          docker push thedevopsdude01/python-app:${{ env.SHORT_SHA }}
