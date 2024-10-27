@@ -1,12 +1,12 @@
+from flask import Flask
 import time
-import sys
 
-def print_current_time():
-    while True:  
-        current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-        print(f"The current time: {current_time}")
-        sys.stdout.flush()
-        time.sleep(5)
+app = Flask(__name__)
+
+@app.route('/')
+def get_current_time():
+    current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    return f"The current time: {current_time}"
 
 if __name__ == "__main__":
-    print_current_time()
+    app.run(host="0.0.0.0", port=8080)
