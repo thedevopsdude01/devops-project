@@ -33,6 +33,11 @@ jobs:
         run: |
           docker push thedevopsdude/python-app:${{ env.SHORT_SHA }}
 
+      - name: Configure Git Author
+        run: |
+          git config --local user.email "hello@thedevopsdude.com"
+          git config --local user.name "The DevOps Dude"
+
       - name: Update Helm chart with new image tag
         run: |
           sed -i "s/tag:.*/tag: ${{ env.SHORT_SHA }}/" ./python-app/values.yaml
