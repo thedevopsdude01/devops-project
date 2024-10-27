@@ -1,0 +1,25 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Lint YAML files
+      uses: ibiqlik/action-yamllint@v3
+    - name: Lint Helm chart
+      uses: sttzum/helm-lint-action@v1
+      with:
+         chart_dir: python-app  # Targeting the directory with our Helm chart
+    - name: Build Docker image
+      run: docker build -t your-dockerhub-username/python-app:${{ github.sha::7 }} .
+    - name: Log in to DockerHub
+      run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+    - name: Push Docker image
+      run: docker push your-dockerhub-username/python-app:${{ github.sha::7 }}
