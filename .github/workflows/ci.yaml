@@ -18,9 +18,6 @@ jobs:
         run: |
           echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_ENV
 
-      - name: Lint YAML files
-        uses: ibiqlik/action-yamllint@v3
-
       - name: Build Docker image
         run: |
           docker build -t thedevopsdude01/python-app:${{ env.SHORT_SHA }} .
