@@ -18,8 +18,8 @@ jobs:
       with:
          chart_dir: python-app  # Targeting the directory with our Helm chart
     - name: Build Docker image
-      run: docker build -t your-dockerhub-username/python-app:${{ github.sha::7 }} .
+      run: docker build -t your-dockerhub-username/python-app:${{ GITHUB_SHA::7 }} .
     - name: Log in to DockerHub
       run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
     - name: Push Docker image
-      run: docker push your-dockerhub-username/python-app:${{ github.sha::7 }}
+      run: docker push your-dockerhub-username/python-app:${{ GITHUB_SHA::7 }}
