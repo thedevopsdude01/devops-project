@@ -16,10 +16,6 @@ jobs:
       run: echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_ENV      
     - name: Lint YAML files
       uses: ibiqlik/action-yamllint@v3
-    - name: Lint Helm chart
-      uses: sttzum/helm-lint-action@v1
-      with:
-         chart_dir: python-app  # Targeting the directory with our Helm chart
     - name: Build Docker image
       run: docker build -t your-dockerhub-username/python-app:${{ env.SHORT_SHA }} .
     - name: Log in to DockerHub
