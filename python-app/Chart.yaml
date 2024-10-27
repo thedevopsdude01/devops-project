@@ -1,0 +1,8 @@
+apiVersion: v2
+name: python-app
+description: A Helm chart for deploying the Python app with ArgoCD
+version: 1.0.0
+dependencies:
+  - name: argo-cd
+    version: "5.16.0"
+    repository: "https://argoproj.github.io/argo-helm"

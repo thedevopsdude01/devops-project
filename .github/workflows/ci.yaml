@@ -18,6 +18,9 @@ jobs:
         run: |
           echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_ENV
 
+      - name: Update Helm dependencies
+        run: helm dependency update ./python-app
+
       - name: Build Docker image
         run: |
           docker build -t thedevopsdude/python-app:${{ env.SHORT_SHA }} .
