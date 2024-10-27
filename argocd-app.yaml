@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: '.'
+    repoURL: 'https://github.com/thedevopsdude01/devops-project-01'
     targetRevision: HEAD
     path: python-app
   destination:
