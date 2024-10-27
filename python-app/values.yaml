@@ -7,15 +7,6 @@ service:
   type: ClusterIP
   port: 8080
 
-ingress:
-  enabled: true
-  className: nginx
-  hosts:
-    - host: python-app.local
-      paths:
-        - path: /
-          pathType: Prefix
-
 serviceAccount:
   create: false
 
