@@ -2,7 +2,7 @@ import time
 
 def print_current_time():
     current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    print(f"Current time: {current_time}")
+    print(f"The current time: {current_time}")
     time.sleep(5)
 
 if __name__ == "__main__":
