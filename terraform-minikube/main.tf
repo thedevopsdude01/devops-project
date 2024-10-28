@@ -16,8 +16,7 @@ resource "minikube_cluster" "minikube_docker" {
   cluster_name = "devops-python-app"
   addons = [
     "default-storageclass",
-    "storage-provisioner",
-    "ingress"
+    "storage-provisioner"
   ]
 }
 
